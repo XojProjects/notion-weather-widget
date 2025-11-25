@@ -1,23 +1,25 @@
-/* No forced full-screen height */
-html, body, #root {
+/* No forced full-height */
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
 }
 
-/* Root wrapper – takes full width of iframe */
+/* Root wrapper – full width, tight padding */
 .widget-root {
-  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
   background: transparent;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Mono",
     "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   color: #c084fc;
-  padding: 6px;
+  padding: 4px;
 }
 
-/* Base card */
+/* Main card */
 .weather-card {
   padding: 12px 18px 14px;
   border-radius: 16px;
@@ -26,10 +28,10 @@ html, body, #root {
   box-shadow: 0 0 28px rgba(147, 51, 234, 0.45);
 }
 
-/* FULL WIDTH inside the iframe / Notion column */
+/* Make it use the whole Notion column */
 .weather-card.wide {
   width: 100%;
-  max-width: 900px; /* you can bump this higher if you want */
+  max-width: 900px; /* you can push this higher if you want even wider */
 }
 
 /* Header label */
@@ -46,4 +48,82 @@ html, body, #root {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin
+  margin-bottom: 10px;
+}
+
+.temp-large {
+  font-size: 2.9rem;
+  line-height: 1;
+  color: #f5e1ff;
+  text-shadow: 0 0 12px rgba(245, 225, 255, 0.55);
+}
+
+.cond-large {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(196, 181, 253, 0.9);
+  margin-top: 4px;
+}
+
+.meta-today {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.75rem;
+  color: rgba(191, 219, 254, 0.85);
+  gap: 2px;
+}
+
+/* Forecast row – full width, 5 equal cards */
+.forecast-row {
+  margin-top: 8px;
+  display: flex;
+  gap: 6px;
+}
+
+.day-card {
+  flex: 1;
+  background: rgba(24, 24, 38, 0.9);
+  border-radius: 10px;
+  padding: 6px 6px 7px;
+  border: 1px solid rgba(147, 51, 234, 0.35);
+}
+
+.day-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(196, 181, 253, 0.9);
+  margin-bottom: 2px;
+}
+
+.day-cond {
+  font-size: 0.68rem;
+  color: rgba(191, 219, 254, 0.85);
+  margin-bottom: 4px;
+}
+
+.day-temps {
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.day-temps .high {
+  color: #f97373;
+}
+
+.day-temps .low {
+  color: #60a5fa;
+}
+
+/* Status text */
+.status {
+  font-size: 0.76rem;
+  color: rgba(191, 219, 254, 0.8);
+}
+
+.status.error {
+  color: rgb(248, 113, 113);
+}
