@@ -52,19 +52,23 @@ export default function App() {
           <>
             {/* TODAY BLOCK */}
             <div className="today-row">
-              <div>
-                <div className="temp-large">
-                  {Math.round(current.temperature)}°
-                </div>
-                <div className="cond-large">
-                  {decodeWeather(current.weathercode)}
-                </div>
-              </div>
-              <div className="meta-today">
-                <span>Perth</span>
-                <span>Wind {Math.round(current.windspeed)} km/h</span>
-              </div>
-            </div>
+  <div>
+    <div className="temp-large">
+      {Math.round(current.temperature)}°
+    </div>
+    <div className="cond-large">
+      {decodeWeather(current.weathercode)}
+    </div>
+  </div>
+  <div className="meta-today">
+    <span className="meta-city">Perth</span>
+    <span className="meta-time">{formatHeaderTime()}</span>
+    <span className="meta-wind">
+      Wind {Math.round(current.windspeed)} km/h
+    </span>
+  </div>
+</div>
+
 
 {/* 5-DAY FORECAST */}
 <div className="forecast-row">
@@ -104,3 +108,18 @@ export default function App() {
     </div>
   );
 }
+
+const formatHeaderTime = () => {
+  const now = new Date();
+  const date = now.toLocaleDateString("en-AU", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+  const time = now.toLocaleTimeString("en-AU", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return `${date} • ${time}`;
+};
+
