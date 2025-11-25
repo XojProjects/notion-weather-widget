@@ -2,28 +2,52 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 export default function App() {
-  const [current, setCurrent] = useState(null);
-  const [daily, setDaily] = useState(null);
-  const [error, setError] = useState(false);
+  
+const [current, setCurrent] = useState(null);
+const [daily, setDaily] = useState(null);
+const [error, setError] = useState(false);
+const [now, setNow] = useState(new Date()); // <-- add this
 
-  useEffect(() => {
-    async function loadWeather() {
-      try {
-        const res = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=-31.95&longitude=115.86&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto"
-        );
-        if (!res.ok) throw new Error("Weather error");
 
-        const data = await res.json();
+ useEffect(() => {
+  let cancelled = false;
+
+  async function loadWeather() {
+    try {
+      const res = await fetch(
+        "https://api.open-meteo.com/v1/forecast?latitude=-31.95&longitude=115.86&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto"
+      );
+      if (!res.ok) throw new Error("Weather error");
+      const data = await res.json();
+      if (!cancelled) {
         setCurrent(data.current_weather);
         setDaily(data.daily);
-      } catch (e) {
-        setError(true);
       }
+    } catch (e) {
+      if (!cancelled) setError(true);
     }
+  }
 
+  // initial load
+  loadWeather();
+
+  // live clock: update every 60s
+  const clockId = setInterval(() => {
+    setNow(new Date());
+  }, 60 * 1000);
+
+  // OPTIONAL: live weather refresh every 15 minutes
+  const weatherId = setInterval(() => {
     loadWeather();
-  }, []);
+  }, 15 * 60 * 1000);
+
+  return () => {
+    cancelled = true;
+    clearInterval(clockId);
+    clearInterval(weatherId);
+  };
+}, []);
+
 
   const decodeWeather = (code) => {
     if (code === 0) return "Clear";
