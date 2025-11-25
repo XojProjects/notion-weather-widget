@@ -25,11 +25,14 @@ body,
 /* Main card */
 .weather-card {
   padding: 10px 18px 12px;
-  border-radius: 14px;
-  background: rgba(10, 10, 20, 0.92);
-  border: 1px solid rgba(147, 51, 234, 0.7);
-  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
+  border-radius: 16px;
+  background: radial-gradient(circle at 0% 0%, #1e1036 0%, #050713 45%, #050713 100%);
+  border: 1px solid rgba(168, 85, 247, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(88, 28, 135, 0.7),
+    0 0 26px rgba(147, 51, 234, 0.4);
 }
+
 
 .weather-card.wide {
   width: 100%;
@@ -78,16 +81,19 @@ body,
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  font-size: 0.74rem;
+  justify-content: flex-start;
+  font-size: 0.72rem;
   color: rgba(191, 219, 254, 0.9);
-  gap: 2px;
+  gap: 1px;
+  margin-top: -2px; /* pulls it up closer to the label line */
 }
+
 
 /* Forecast row – tight, bar-like */
 .forecast-row {
-  margin-top: 6px;
+  margin-top: 4px;
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 
 .day-card {
@@ -138,3 +144,19 @@ body,
 .status.error {
   color: rgb(248, 113, 113);
 }
+
+/* Today card highlight */
+.day-card.today {
+  border-color: rgba(196, 181, 253, 0.9);
+  background: linear-gradient(135deg, rgba(76, 29, 149, 0.9), rgba(15, 23, 42, 0.95));
+  box-shadow: 0 0 18px rgba(196, 181, 253, 0.5);
+}
+
+.day-card.today .day-label {
+  color: #f9fafb;
+}
+
+.day-card.today .day-temps .high {
+  color: #f97316;
+}
+
