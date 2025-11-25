@@ -2,18 +2,20 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 export default function App() {
-  const [weather, setWeather] = useState(null);
+  const [current, setCurrent] = useState(null);
+  const [daily, setDaily] = useState(null);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     async function loadWeather() {
       try {
         const res = await fetch(
-          "https://api.open-meteo.com/v1/forecast?latitude=-31.95&longitude=115.86&current_weather=true"
+          "https://api.open-meteo.com/v1/forecast?latitude=-31.95&longitude=115.86&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto"
         );
         if (!res.ok) throw new Error("Weather error");
         const data = await res.json();
-        setWeather(data.current_weather);
+        setCurrent(data.current_weather);
+        setDaily(data.daily);
       } catch (e) {
         setError(true);
       }
@@ -33,26 +35,62 @@ export default function App() {
     return "Cloudy";
   };
 
+  const getDayLabel = (isoDate, index) => {
+    if (index === 0) return "Today";
+    const d = new Date(isoDate);
+    return d.toLocaleDateString("en-AU", { weekday: "short" }); // Mon, Tue, etc.
+  };
+
+  const hasData = current && daily && daily.time && daily.time.length > 0;
+
   return (
     <div className="widget-root">
-      <div className="weather-card">
+      <div className="weather-card wide">
         <div className="label">ENVIRONMENT</div>
 
-        {weather && !error && (
+        {hasData && !error && (
           <>
-            <div className="temp-row">
-              <div className="temp">{Math.round(weather.temperature)}°</div>
-              <div className="cond">{decodeWeather(weather.weathercode)}</div>
+            {/* TODAY BLOCK */}
+            <div className="today-row">
+              <div>
+                <div className="temp-large">
+                  {Math.round(current.temperature)}°
+                </div>
+                <div className="cond-large">
+                  {decodeWeather(current.weathercode)}
+                </div>
+              </div>
+              <div className="meta-today">
+                <span>Perth</span>
+                <span>Wind {Math.round(current.windspeed)} km/h</span>
+              </div>
             </div>
 
-            <div className="meta">
-              <span>Perth</span>
-              <span>Wind {Math.round(weather.windspeed)} km/h</span>
+            {/* 5-DAY FORECAST */}
+            <div className="forecast-row">
+              {daily.time.slice(0, 5).map((date, idx) => (
+                <div key={date} className="day-card">
+                  <div className="day-label">
+                    {getDayLabel(date, idx)}
+                  </div>
+                  <div className="day-cond">
+                    {decodeWeather(daily.weathercode[idx])}
+                  </div>
+                  <div className="day-temps">
+                    <span className="high">
+                      {Math.round(daily.temperature_2m_max[idx])}°
+                    </span>
+                    <span className="low">
+                      {Math.round(daily.temperature_2m_min[idx])}°
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </>
         )}
 
-        {!weather && !error && (
+        {!hasData && !error && (
           <div className="status">Loading…</div>
         )}
 
