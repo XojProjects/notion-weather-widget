@@ -160,3 +160,21 @@ body,
   color: #f97316;
 }
 
+.meta-today span {
+  line-height: 1.2;
+}
+
+.meta-city {
+  font-weight: 500;
+}
+
+.meta-time {
+  font-size: 0.7rem;
+  color: rgba(191, 219, 254, 0.85);
+}
+
+.meta-wind {
+  font-size: 0.68rem;
+  color: rgba(148, 163, 184, 0.9);
+}
+
