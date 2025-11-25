@@ -31,7 +31,10 @@ body,
 /* Use full Notion column width */
 .weather-card.wide {
   width: 100%;
-  max-width: 760px; /* tweak this if you want even wider */
+  max-width: none;      /* remove width cap */
+  box-sizing: border-box;
+}
+
 }
 
 /* Header label */
