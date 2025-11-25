@@ -77,22 +77,19 @@ const [now, setNow] = useState(new Date()); // <-- add this
     return d.toLocaleDateString("en-AU", { weekday: "short" });
   };
 
-  const formatHeaderTime = () => {
-    const now = new Date();
+const formatHeaderTime = (now) => {
+  const date = now.toLocaleDateString("en-AU", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+  const time = now.toLocaleTimeString("en-AU", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+  return `${date} • ${time}`;
+};
 
-    const date = now.toLocaleDateString("en-AU", {
-      weekday: "short",
-      day: "numeric",
-      month: "short",
-    });
-
-    const time = now.toLocaleTimeString("en-AU", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    return `${date} • ${time}`;
-  };
 
   const hasData = current && daily && daily.time && daily.time.length > 0;
 
@@ -116,7 +113,7 @@ const [now, setNow] = useState(new Date()); // <-- add this
 
               <div className="meta-today">
                 <span className="meta-city">Perth</span>
-                <span className="meta-time">{formatHeaderTime()}</span>
+                <span className="meta-time">{formatHeaderTime(now)}</span>
                 <span className="meta-wind">
           <span className="meta-feels">
   Feels like {Math.round(current.temperature)}° </span>
