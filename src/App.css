@@ -24,14 +24,14 @@ body,
 
 /* Main card */
 .weather-card {
-  padding: 10px 18px 12px;
+  width: 100%;
+  padding: 12px 16px;
   border-radius: 16px;
-  background: radial-gradient(circle at 0% 0%, #1e1036 0%, #050713 45%, #050713 100%);
-  border: 1px solid rgba(168, 85, 247, 0.75);
-  box-shadow:
-    0 0 0 1px rgba(88, 28, 135, 0.7),
-    0 0 26px rgba(147, 51, 234, 0.4);
+  background: linear-gradient(145deg, #140f23, #08060f);
+  border: 1px solid rgba(147, 51, 234, 0.35);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.2);
 }
+
 
 
 .weather-card.wide {
