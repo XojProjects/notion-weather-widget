@@ -1,72 +1,51 @@
-.App {
-  text-align: center;
+body {
+  background: transparent;
+  margin: 0;
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.weather-widget {
+  background: transparent;
+  padding: 12px 18px;
+  color: #c084fc;
+  width: 260px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  opacity: 0.6;
+  margin-bottom: 6px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main {
+  font-size: 2.6rem;
+  font-weight: 500;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: baseline;
+  gap: 10px;
+  text-shadow: 0 0 8px rgba(192,132,252,0.4);
 }
 
-.App-link {
-  color: #61dafb;
+.temp {
+  font-size: 3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.desc {
+  font-size: 0.9rem;
+  opacity: 0.7;
 }
 
-@keyframes wave {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 20px 20px;
-  }
+.details {
+  margin-top: 4px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.8;
 }
 
-/* Optional: Add these styles for a more dramatic water effect */
-.water-fill {
-  position: relative;
-}
-
-.water-fill::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 50%);
-  animation: ripple 4s linear infinite;
-}
-
-@keyframes ripple {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.loader {
+  color: #c084fc;
+  font-size: 0.8rem;
+  opacity: 0.6;
 }
