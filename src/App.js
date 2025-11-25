@@ -66,25 +66,28 @@ export default function App() {
               </div>
             </div>
 
-            {/* 5-DAY FORECAST */}
-            <div className="forecast-row">
-              {daily.time.slice(0, 5).map((date, idx) => (
-                <div key={date} className="day-card">
-                  <div className="day-label">
-                    {getDayLabel(date, idx)}
-                  </div>
-                  <div className="day-cond">
-                    {decodeWeather(daily.weathercode[idx])}
-                  </div>
-                  <div className="day-temps">
-                    <span className="high">
-                      {Math.round(daily.temperature_2m_max[idx])}°
-                    </span>
-                    <span className="low">
-                      {Math.round(daily.temperature_2m_min[idx])}°
-                    </span>
-                  </div>
-                </div>
+{/* 5-DAY FORECAST */}
+<div className="forecast-row">
+  {daily.time.slice(0, 5).map((date, idx) => (
+    <div
+      key={date}
+      className={`day-card ${idx === 0 ? "today" : ""}`}   // <— change
+    >
+      <div className="day-label">
+        {getDayLabel(date, idx)}
+      </div>
+      <div className="day-cond">
+        {decodeWeather(daily.weathercode[idx])}
+      </div>
+      <div className="day-temps">
+        <span className="high">
+          {Math.round(daily.temperature_2m_max[idx])}°
+        </span>
+        <span className="low">
+          {Math.round(daily.temperature_2m_min[idx])}°
+        </span>
+      </div>
+    </div>
               ))}
             </div>
           </>
