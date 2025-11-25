@@ -31,10 +31,14 @@ const [now, setNow] = useState(new Date()); // <-- add this
   // initial load
   loadWeather();
 
-  // live clock: update every 60s
-  const clockId = setInterval(() => {
-    setNow(new Date());
-  }, 60 * 1000);
+// immediate sync
+setNow(new Date());
+
+// live clock: update every 1s
+const clockId = setInterval(() => {
+  setNow(new Date());
+}, 1000);
+
 
   // OPTIONAL: live weather refresh every 15 minutes
   const weatherId = setInterval(() => {
