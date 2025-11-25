@@ -35,6 +35,18 @@ export default function App() {
     return "Cloudy";
   };
 
+  const getWeatherIcon = (code) => {
+  if (code === 0) return "☀️";
+  if (code === 1 || code === 2) return "🌤";
+  if (code === 3) return "☁️";
+  if (code >= 51 && code <= 67) return "🌧";
+  if (code >= 71 && code <= 77) return "🌨";
+  if (code >= 80 && code <= 82) return "🌦";
+  if (code >= 95) return "⛈";
+  return "☁️";
+};
+
+
   const getDayLabel = (isoDate, index) => {
     if (index === 0) return "Today";
     const d = new Date(isoDate);
@@ -71,27 +83,25 @@ export default function App() {
 
 
 {/* 5-DAY FORECAST */}
-<div className="forecast-row">
-  {daily.time.slice(0, 5).map((date, idx) => (
-    <div
-      key={date}
-      className={`day-card ${idx === 0 ? "today" : ""}`}   // <— change
-    >
-      <div className="day-label">
-        {getDayLabel(date, idx)}
-      </div>
-      <div className="day-cond">
-        {decodeWeather(daily.weathercode[idx])}
-      </div>
-      <div className="day-temps">
-        <span className="high">
-          {Math.round(daily.temperature_2m_max[idx])}°
-        </span>
-        <span className="low">
-          {Math.round(daily.temperature_2m_min[idx])}°
-        </span>
-      </div>
-    </div>
+<div className={`day-card ${idx === 0 ? "today" : ""}`}>
+  <div className="day-header">
+    <span className="day-label">{getDayLabel(date, idx)}</span>
+    <span className="day-icon">
+      {getWeatherIcon(daily.weathercode[idx])}
+    </span>
+  </div>
+  <div className="day-cond">
+    {decodeWeather(daily.weathercode[idx])}
+  </div>
+  <div className="day-temps">
+    <span className="high">
+      {Math.round(daily.temperature_2m_max[idx])}°
+    </span>
+    <span className="low">
+      {Math.round(daily.temperature_2m_min[idx])}°
+    </span>
+  </div>
+</div>
               ))}
             </div>
           </>
