@@ -94,6 +94,8 @@ export default function App() {
                 <span className="meta-city">Perth</span>
                 <span className="meta-time">{formatHeaderTime()}</span>
                 <span className="meta-wind">
+          <span className="meta-feels">
+  Feels like {Math.round(current.temperature)}° </span>
                   Wind {Math.round(current.windspeed)} km/h
                 </span>
               </div>
