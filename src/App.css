@@ -1,4 +1,4 @@
-/* No forced full-height */
+/* No forced height, full width */
 html,
 body,
 #root {
@@ -6,7 +6,7 @@ body,
   padding: 0;
 }
 
-/* Root wrapper – full width, tight padding */
+/* Root wrapper – flush to top, full width */
 .widget-root {
   display: flex;
   align-items: flex-start;
@@ -16,31 +16,31 @@ body,
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Mono",
     "JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   color: #c084fc;
-  padding: 4px;
+  padding: 0;
 }
 
 /* Main card */
 .weather-card {
-  padding: 12px 18px 14px;
-  border-radius: 16px;
-  background: rgba(10, 10, 20, 0.9);
-  border: 1px solid rgba(147, 51, 234, 0.65);
-  box-shadow: 0 0 28px rgba(147, 51, 234, 0.45);
+  padding: 10px 18px 12px;
+  border-radius: 14px;
+  background: rgba(10, 10, 20, 0.92);
+  border: 1px solid rgba(147, 51, 234, 0.7);
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
 }
 
-/* Make it use the whole Notion column */
+/* Use full Notion column width */
 .weather-card.wide {
   width: 100%;
-  max-width: 900px; /* you can push this higher if you want even wider */
+  max-width: 760px; /* tweak this if you want even wider */
 }
 
 /* Header label */
 .label {
   font-size: 10px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: rgba(196, 181, 253, 0.85);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 /* Today row */
@@ -48,14 +48,14 @@ body,
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .temp-large {
-  font-size: 2.9rem;
+  font-size: 2.7rem;
   line-height: 1;
   color: #f5e1ff;
-  text-shadow: 0 0 12px rgba(245, 225, 255, 0.55);
+  text-shadow: 0 0 10px rgba(245, 225, 255, 0.55);
 }
 
 .cond-large {
@@ -63,55 +63,58 @@ body,
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: rgba(196, 181, 253, 0.9);
-  margin-top: 4px;
+  margin-top: 3px;
 }
 
 .meta-today {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  font-size: 0.75rem;
-  color: rgba(191, 219, 254, 0.85);
+  font-size: 0.74rem;
+  color: rgba(191, 219, 254, 0.9);
   gap: 2px;
 }
 
-/* Forecast row – full width, 5 equal cards */
+/* Forecast row – tight, bar-like */
 .forecast-row {
-  margin-top: 8px;
+  margin-top: 6px;
   display: flex;
-  gap: 6px;
+  gap: 4px;
 }
 
 .day-card {
   flex: 1;
-  background: rgba(24, 24, 38, 0.9);
-  border-radius: 10px;
-  padding: 6px 6px 7px;
-  border: 1px solid rgba(147, 51, 234, 0.35);
+  background: rgba(22, 22, 34, 0.95);
+  border-radius: 8px;
+  padding: 4px 4px 5px;
+  border: 1px solid rgba(147, 51, 234, 0.4);
 }
 
 .day-label {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
   color: rgba(196, 181, 253, 0.9);
-  margin-bottom: 2px;
+  margin-bottom: 1px;
 }
 
 .day-cond {
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   color: rgba(191, 219, 254, 0.85);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .day-temps {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   display: flex;
   justify-content: space-between;
 }
 
 .day-temps .high {
-  color: #f97373;
+  color: #fb7185;
 }
 
 .day-temps .low {
