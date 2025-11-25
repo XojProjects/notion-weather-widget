@@ -63,11 +63,13 @@ body,
 }
 
 .temp-large {
-  font-size: 2.7rem;
+  font-size: clamp(2.2rem, 3.5vw, 3.4rem);
   line-height: 1;
+  font-weight: 600;
   color: #f5e1ff;
-  text-shadow: 0 0 10px rgba(245, 225, 255, 0.55);
+  text-shadow: 0 0 12px rgba(245, 225, 255, 0.55);
 }
+
 
 .cond-large {
   font-size: 0.9rem;
@@ -147,12 +149,20 @@ body,
 
 /* Today card highlight */
 .day-card.today {
-  border-color: rgba(196, 181, 253, 1);
-  background: linear-gradient(135deg, rgba(76, 29, 149, 0.95), rgba(15, 23, 42, 0.98));
+  border-color: rgba(196, 181, 253, 0.9);
+  background: radial-gradient(circle at top left,
+    rgba(168, 85, 247, 0.35),
+    rgba(15, 23, 42, 0.98)
+  );
   box-shadow:
-    0 0 0 1px rgba(196, 181, 253, 0.6),
-    0 0 20px rgba(196, 181, 253, 0.45);
+    0 0 0 1px rgba(196, 181, 253, 0.4),
+    0 0 20px rgba(167, 139, 250, 0.45);
 }
+
+.day-card.today .day-label {
+  color: #f9fafb;
+}
+
 
 .day-card.today .day-label {
   color: #f9fafb;
@@ -170,6 +180,12 @@ body,
 .meta-today span {
   line-height: 1.2;
 }
+
+.meta-feels {
+  font-size: 0.7rem;
+  color: rgba(209, 213, 219, 0.9);
+}
+
 
 .meta-city {
   font-weight: 500;
@@ -195,4 +211,11 @@ body,
 .day-icon {
   font-size: 0.9rem;
 }
+
+.temp-large,
+.day-temps {
+  font-family: "JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+}
+
 
